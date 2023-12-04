@@ -5,6 +5,8 @@ import { type IAgoraRTCClient } from "agora-rtc-sdk-ng";
 import CallControls from "../components/CallControls";
 import CallStatsAndConfig from "../components/CallStatsAndConfig";
 import useStartCall from "../lib/useStartCall";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import { useRouter } from "next/navigation";
 
 type VideoPlayerProps = {
@@ -30,6 +32,13 @@ function VideoPlayer({ channelName, appID, token, client }: VideoPlayerProps) {
         token,
     });
 
+    const notify = (message: string) =>
+        toast(message, {
+            position: "top-right",
+            autoClose: 3000,
+            closeOnClick: true,
+        });
+
     // const numUsers = remoteUsers.length + 1;
 
     if (deviceLoading || client.connectionState !== "CONNECTED")
@@ -51,7 +60,10 @@ function VideoPlayer({ channelName, appID, token, client }: VideoPlayerProps) {
                     </div>
                 </div>
                 <CallControls />
-                <CallStatsAndConfig callDuration={callDuration} />
+                <CallStatsAndConfig
+                    callDuration={callDuration}
+                    notify={notify}
+                />
                 <LocalVideoTrack
                     track={localCameraTrack}
                     play={true}
@@ -86,6 +98,7 @@ function VideoPlayer({ channelName, appID, token, client }: VideoPlayerProps) {
                 {remoteUsers.map((user) => (
                     <RemoteUser key={user.uid} user={user} />
                 ))}
+                <ToastContainer />
             </div>
         </div>
     );
