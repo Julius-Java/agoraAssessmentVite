@@ -41,6 +41,14 @@ function VideoPlayer({ channelName, appID, token, client }: VideoPlayerProps) {
 
     // const numUsers = remoteUsers.length + 1;
 
+    // remoteUsers.map((user) => {
+    //     console.log(user.uid);
+    // });
+
+    // console.log(remoteUsers);
+
+    // console.log(numUsers);
+
     if (deviceLoading || client.connectionState !== "CONNECTED")
         return (
             <div className="text-center text-lg italic font-bold">
@@ -96,7 +104,12 @@ function VideoPlayer({ channelName, appID, token, client }: VideoPlayerProps) {
                     />
                 )}
                 {remoteUsers.map((user) => (
-                    <RemoteUser key={user.uid} user={user} />
+                    <RemoteUser
+                        key={user.uid}
+                        user={user}
+                        playVideo={true}
+                        playAudio={true}
+                    />
                 ))}
                 <ToastContainer />
             </div>

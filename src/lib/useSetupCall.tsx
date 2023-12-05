@@ -11,7 +11,7 @@ function useSetupCall() {
                 const AgoraRTC = (await import("agora-rtc-sdk-ng")).default;
                 // const AgoraRTCReact = await import("agora-rtc-react");
                 const client = AgoraRTC.createClient({
-                    mode: "live",
+                    mode: "rtc",
                     codec: "vp8",
                 });
                 setAgoraClient(client);

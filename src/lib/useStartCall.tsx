@@ -49,14 +49,8 @@ function useStartCall({
             setCallDuration((prevDuration) => prevDuration + 1);
         }, 1000);
         audioTracks.map((track) => track.play());
-        client.on("user-joined", () => {
-            console.log("User Joined");
-        });
         return () => {
             clearInterval(timer);
-            client.on("user-left", () => {
-                console.log("User left the call");
-            });
         };
     }, [audioTracks, client]);
 
