@@ -39,16 +39,6 @@ function VideoPlayer({ channelName, appID, token, client }: VideoPlayerProps) {
             closeOnClick: true,
         });
 
-    // const numUsers = remoteUsers.length + 1;
-
-    // remoteUsers.map((user) => {
-    //     console.log(user.uid);
-    // });
-
-    // console.log(remoteUsers);
-
-    // console.log(numUsers);
-
     if (deviceLoading || client.connectionState !== "CONNECTED")
         return (
             <div className="text-center text-lg italic font-bold">
